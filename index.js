@@ -5,6 +5,7 @@ const db = new PouchDB('items');
 // const funcs = require("./funcs");
 
 const express = require('express');
+const {getAll} = require("./funcs");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -108,3 +109,4 @@ app.get('/delete/:id', async (request, response) => {
     // console.log('send back to client: '+result);
     // response.json(result);
 });
+getAll();m
