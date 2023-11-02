@@ -7,7 +7,7 @@ async function getInfo() {
     }
 }
 
-// getInfo();
+ getInfo();
 
 const doc = {
     "_id": "badger",
@@ -30,7 +30,7 @@ async function putDoc(doc, res) {
     }
 };
 
-// putDoc(doc);
+ putDoc(doc);
 
 async function getDoc(id) {
     try {
@@ -41,7 +41,7 @@ async function getDoc(id) {
     }
 };
 
-// getDoc('mittens');
+ getDoc('mittens');
 
 async function getAll() {
     try {
@@ -57,7 +57,7 @@ async function getAll() {
         console.log(err);
     }
 }
-// getAll();
+getAll();
 
 async function removeDoc(doc) {
     try {
@@ -69,23 +69,23 @@ async function removeDoc(doc) {
     }
 }
 
-// removeDoc('mydoc');
+ removeDoc('mydoc');
 
 async function updateDoc(id, age) {
     try {
         const doc = await db.get(id);
         doc.age = age;
         return await db.put(doc);
-        // const response = await db.put({
-        //   _id: id,
-        //   _rev: doc._rev,
-        //   age: age
-        // });
-        // console.log(response);
+         const response = await db.put({
+           _id: id,
+         _rev: doc._rev,
+           age: age
+         });
+         console.log(response);
       } catch (err) {
         console.log(err);
       }
 }
 
-// updateDoc('badger', 3);
+updateDoc('badger', 3);
 module.exports = { updateDoc, getAll, removeDoc, getDoc, getInfo, putDoc };

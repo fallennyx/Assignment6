@@ -2,7 +2,7 @@
 const PouchDB = require('pouchdb');
 const db = new PouchDB('items');
 
-// const funcs = require("./funcs");
+const funcs = require("./funcs");
 
 const express = require('express');
 const {getAll} = require("./funcs");
@@ -33,28 +33,28 @@ async function putDoc(doc, res) {
     }
 };
 
-// putDoc(doc);
+putDoc(doc);
 
 
 
 
 
 app.get('/api', async (request, response) => {
-    // console.log('got a request ' + request);
+    console.log('got a request ' + request);
     const result = await db.allDocs({
         include_docs: true,
         attachments: true
     });
-    // console.log(result);
+     console.log(result);
     response.json(result);
 });
 
 app.get('/api/:id', async (request, response) => {
-    // console.log('got an id request ' + request.params);
+     console.log('got an id request ' + request.params);
     const id = request.params.id;
-    // console.log(id);
+     console.log(id);
     const result = await db.get(id);
-    // console.log('send back to client: '+result);
+     console.log('send back to client: '+result);
     response.json(result);
 });
 
@@ -69,9 +69,8 @@ app.post('/insert', async (request, response) => {
     } catch (err) {
         console.log(err);
     }
-    // console.log(database);
-    // send data back to the client, for debugging
-    // response.json(data);
+     console.log(database);
+     response.json(data);
 });
 
 app.post('/update', async (request, response) => {
@@ -86,27 +85,26 @@ app.post('/update', async (request, response) => {
     doc.reviewText = data.reviewText;
     try {
         response = await db.put(doc);
-        // console.log(response);
+         console.log(response);
     } catch (err) {
         console.log(err);
     }
-    // console.log(database);
-    // send data back to the client, for debugging
-    // response.json(data);
+     console.log(database);
+     response.json(data);
 });   
 
 app.get('/delete/:id', async (request, response) => {
-    // console.log('got an id request ' + request.params);
+    console.log('got an id request ' + request.params);
     try {
     const id = request.params.id;
-    // console.log(id);
+     console.log(id);
     const result = await db.get(id);
     response = await db.remove(result);
         console.log(response);
     } catch (err) {
         console.log(err);
     }
-    // console.log('send back to client: '+result);
-    // response.json(result);
+     console.log('send back to client: '+result);
+     response.json(result);
 });
-getAll();m
+getAll();
